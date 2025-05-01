@@ -1,40 +1,52 @@
-<!DOCTYPE html>
-<html>
+
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Екатирина Павловна</title>
     <link rel="icon" href="https://atom.com/favicon.ico" type="image/x-icon">
     <style>
+        :root {
+            --primary: #e91e63;
+            --secondary: #ff4081;
+            --light: #fff0f6;
+            --dark: #2c001e;
+        }
+
         /* Основные стили */
         body, html {
             margin: 0;
             padding: 0;
             font-family: 'Helvetica Neue', Arial, sans-serif;
-            color: #000; /* Черный цвет текста */
-            height: 100vh;
-            background-color: #fff; /* Светлый фон */
+            color: var(--dark);
+            min-height: 100vh;
+            background-color: #fff;
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
-            background-image: url('https://keepcalm-production.ru/wp-content/uploads/imgonline-com-ua-Resize-q5XtbvlM4LSyNjgs.jpg'); /* Текстурированный фон */
+            background-image: url('https://keepcalm-production.ru/wp-content/uploads/imgonline-com-ua-Resize-q5XtbvlM4LSyNjgs.jpg');
             display: flex;
             flex-direction: column;
         }
 
         header {
-            background-color: #fff;
-            color: black; /* Черный цвет текста */
+            background-color: rgba(255, 255, 255, 0.95);
+            color: var(--dark);
             padding: 1em 2em;
             display: flex;
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            animation: fadeIn 2s ease-in-out;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        header h1 {
-            margin: 0;
-        }
+            header h1 {
+                margin: 0;
+                font-size: 1.5rem;
+                font-weight: 600;
+            }
 
         nav ul {
             list-style-type: none;
@@ -45,124 +57,310 @@
         }
 
         nav a {
-            color: black; /* Черный цвет текста */
+            color: var(--dark);
             text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s, transform 0.3s;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        nav a:hover {
-            color: #000; /* Черный цвет текста при наведении */
-            text-decoration: underline;
-            transform: scale(1.1);
-        }
+            nav a::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: -5px;
+                left: 0;
+                background-color: var(--primary);
+                transition: width 0.3s;
+            }
+
+            nav a:hover::after {
+                width: 100%;
+            }
 
         main {
             flex: 1;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2em;
-            color: #000; /* Черный цвет текста */
+            color: var(--dark);
         }
 
-        .hero, .introduction, .popular-categories, .advice, .image-section {
-            background-color: rgba(210, 130, 140, 0.9); /* Светло-серый полупрозрачный фон для контента */
-            padding: 2em;
-            margin: 1em 0;
-            border-radius: 10px;
-            text-align: center;
-            width: 80%;
-            animation: fadeIn 1.5s ease-in-out;
-            color: #fff; /* Белый цвет текста */
-        }
-
-        .image-section img {
+        section {
+            padding: 4rem 2rem;
             width: 100%;
-            max-width: 300px;
-            height: auto;
-            margin: 1em;
-            transition: transform 0.3s;
+            animation: fadeIn 1.5s ease-in-out;
         }
 
-        .image-section img:hover {
-            transform: scale(1.05);
+        .hero, .about, .products, .advice, .contact {
+            background-color: rgba(255, 255, 255, 0.95);
+            margin: 1rem 0;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
         }
+
+            .hero:hover, .about:hover, .products:hover, .advice:hover, .contact:hover {
+                transform: translateY(-5px);
+            }
+
+        .hero {
+            background: linear-gradient(120deg, var(--light), white);
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+            .hero h2 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+                color: var(--primary);
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+                max-width: 800px;
+                margin: 0 auto 2rem;
+            }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+
+            .btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+            .card:hover {
+                transform: translateY(-10px);
+            }
+
+            .card img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+            .card-content h3 {
+                margin-bottom: 0.5rem;
+                color: var(--primary);
+            }
+
+        .image-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+            .image-section img {
+                width: 100%;
+                max-width: 300px;
+                height: auto;
+                border-radius: 10px;
+                transition: transform 0.3s;
+            }
+
+                .image-section img:hover {
+                    transform: scale(1.05);
+                }
 
         footer {
-            background-color: #fff;
-            color: black; /* Черный цвет текста */
+            background-color: rgba(255, 255, 255, 0.95);
+            color: var(--dark);
             text-align: center;
-            padding: 1em 0;
-            width: 100%;
+            padding: 2rem 1em;
+            border-top: 1px solid rgba(0,0,0,0.1);
         }
 
-        footer a {
-            color: black; /* Черный цвет текста */
-            text-decoration: none;
-        }
+            footer a {
+                color: var(--primary);
+                text-decoration: none;
+                font-weight: 500;
+                transition: color 0.3s;
+            }
 
-        footer a:hover {
-            text-decoration: underline;
-        }
+                footer a:hover {
+                    text-decoration: underline;
+                    color: var(--secondary);
+                }
 
         /* Анимации */
         @keyframes fadeIn {
             from {
                 opacity: 0;
+                transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1em;
+                background: white;
+                position: absolute;
+                top: 70px;
+                right: 2em;
+                padding: 1em;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                display: none;
+            }
+
+                nav ul.active {
+                    display: flex;
+                }
+
+            .menu-toggle {
+                display: block;
+                cursor: pointer;
+                font-size: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Добро пожаловать в мир красоты и заботы о себе</h1>
+        <h1>Екатирина Павловна</h1>
         <nav>
-            <ul>
+            <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+            <ul id="nav-menu">
                 <li><a href="#home">Главная</a></li>
                 <li><a href="#about">О нас</a></li>
-                <li><a href="#products">Продукты</a></li>
+                <li><a href="#products">Продукция</a></li>
                 <li><a href="#contact">Контакты</a></li>
             </ul>
         </nav>
     </header>
+
     <main>
         <section id="home" class="hero">
-            <h2>Откройте для себя новые возможности</h2>
-            <p>Наши продукты помогут вам сохранить молодость и красоту на долгие годы.</p>
+            <div class="section-container">
+                <h2>Профессиональная косметика и индивидуальный подход</h2>
+                <p>Добро пожаловать в мир красоты, где мы сочетаем лучшие бренды косметики с глубоким пониманием потребностей вашей кожи. С нами ваша красота сияет изнутри.</p>
+                <a href="#products" class="btn">Посмотреть продукцию</a>
+            </div>
         </section>
-        <section id="about" class="introduction">
-            <h2>Почему выбирают нас?</h2>
-            <ul>
-                <li><strong>Качество и безопасность:</strong> Все наши продукты проходят строгий контроль качества и соответствуют мировым стандартам.</li>
-                <li><strong>Инновационные технологии:</strong> Мы используем только самые передовые разработки и натуральные ингредиенты.</li>
-                <li><strong>Персональный подход:</strong> Наша команда профессионалов готова помочь вам выбрать подходящие средства для вашего типа кожи и решить любые косметические проблемы.</li>
-            </ul>
+
+        <section id="about" class="about">
+            <div class="section-container">
+                <h2>О Екатерине Павловне</h2>
+                <p>С 2013 года я работаю в сфере профессиональной косметологии. Имею сертификаты:</p>
+                <ul>
+                    <li>Аппаратная косметология (2015)</li>
+                    <li>Инъекционные методы коррекции (2017)</li>
+                    <li>Дерматокосметология (2019)</li>
+                    <li>Биоревитализация и мезотерапия (2021)</li>
+                </ul>
+                <p>Моя философия - это комплексный подход к красоте, основанный на понимании биологии кожи и последних научных разработках. Я лично протестировала продукты более чем 20 брендов, чтобы предложить вам только лучшее.</p>
+            </div>
         </section>
-        <section id="products" class="popular-categories">
-            <h2>Популярные категории</h2>
-            <ul>
-                <li><strong>Уход за лицом:</strong> Кремы, сыворотки, маски и многое другое для всех типов кожи.</li>
-                <li><strong>Уход за телом:</strong> Лосьоны, скрабы, масла для идеальной гладкости и увлажнения.</li>
-                <li><strong>Декоративная косметика:</strong> Макияж для создания безупречного образа на каждый день и для особых случаев.</li>
-                <li><strong>Парфюмерия:</strong> Широкий ассортимент ароматов для мужчин и женщин.</li>
-            </ul>
+
+        <section id="products" class="products">
+            <div class="section-container">
+                <h2>Наши косметические средства</h2>
+                <p class="product-description" style="text-align: center; margin-bottom: 2rem;">
+                    Мы работаем только с проверенными брендами, прошедшими строгий дерматологический контроль. Все средства подбираются индивидуально с учетом вашего типа кожи и образа жизни.
+                </p>
+                <div class="products-grid">
+                    <div class="card">
+                        <img src="https://via.placeholder.com/400x200?text=Крем+для+лица" alt="Крем для лица">
+                        <div class="card-content">
+                            <h3>Крем для лица "Сияние"</h3>
+                            <p>Гиалуроновая кислота + витамин C для глубокого увлажнения и сияния кожи.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://via.placeholder.com/400x200?text=Маска+для+волос" alt="Маска для волос">
+                        <div class="card-content">
+                            <h3>Маска для волос "Шелк"</h3>
+                            <p>Аргановое масло и кератин для восстановления поврежденных волос.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://via.placeholder.com/400x200?text=Туалетная+вода" alt="Туалетная вода">
+                        <div class="card-content">
+                            <h3>Парфюм "Цветочная фантазия"</h3>
+                            <p>Свежие ноты персика и жасмина для романтичных натур.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
-        <section id="advice" class="advice">
-            <h2>Советы и рекомендации</h2>
-            <p>На нашем сайте вы найдете полезные статьи и советы от экспертов, которые помогут вам правильно подобрать и использовать косметические средства. Узнайте больше о последних трендах в мире красоты, рецептах домашних масок и секретах макияжа.</p>
+
+        <section class="advice">
+            <div class="section-container">
+                <h2>Советы по уходу</h2>
+                <p>Правильный уход начинается с понимания вашей кожи. Вот несколько базовых рекомендаций:</p>
+                <ul>
+                    <li>Очищение - первый и важнейший шаг ухода, даже для сухой кожи</li>
+                    <li>Тонизация помогает восстановить pH кожи после очищения</li>
+                    <li>Сыворотки доставляют активные компоненты глубже, чем обычные кремы</li>
+                    <li>Не забывайте об увлажнении даже в теплое время года</li>
+                    <li>Защита от солнца - обязательный шаг ухода каждый день</li>
+                </ul>
+                <p>Мы всегда поможем подобрать оптимальную схему ухода именно для вас.</p>
+            </div>
         </section>
+
         <section class="image-section">
-            <img src="https://avatars.mds.yandex.net/i?id=29d8a3e56ab1da0931377e44ddf91627-5350095-images-thumbs&ref=rim&n=33&w=302&h=200" alt="Пример картинки" width="100%">
-            <img src="https://avatars.mds.yandex.net/i?id=55f8a55bc8a70f74bdc56755b2b22782f397a15c-9837529-images-thumbs&ref=rim&n=33&w=301&h=200" alt="Пример картинки">
+            <img src="https://avatars.mds.yandex.net/i?id=29d8a3e56ab1da0931377e44ddf91627-5350095-images-thumbs&ref=rim&n=33&w=302&h=200" alt="Профессиональные консультации">
+            <img src="https://avatars.mds.yandex.net/i?id=55f8a55bc8a70f74bdc56755b2b22782f397a15c-9837529-images-thumbs&ref=rim&n=33&w=301&h=200" alt="Подбор косметики">
         </section>
     </main>
+
     <footer>
-        <p>&copy; 2024 Екатирина Павловна | <a href="https://t.me/katya_mantsevich">Главный Телеграм</a></p>
+        <div class="section-container">
+            <p>&copy; 2024 Екатирина Павловна | <a href="https://t.me/katya_mantsevich" target="_blank">Telegram: @katya_mantsevich</a></p>
+            <p>Адрес: г. Новогрудок</p>
+            <p>Телефон: +7 (495) 123-45-67</p>
+        </div>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('nav-menu').classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
